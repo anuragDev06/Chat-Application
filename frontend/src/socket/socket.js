@@ -1,6 +1,7 @@
 import { io } from "socket.io-client";
 
-const ENDPOINT = (import.meta.env.VITE_BACKEND_URL).replace(/\/$/, "");
+const backendUrl = import.meta.env.VITE_BACKEND_URL || "http://localhost:9000";
+const ENDPOINT = String(backendUrl).replace(/\/$/, "");
 
 const socket = io(ENDPOINT, {
 	reconnectionDelay: 1000,
