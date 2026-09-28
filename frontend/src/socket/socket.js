@@ -1,5 +1,7 @@
 import { io } from "socket.io-client";
-const ENDPOINT = `${import.meta.env.VITE_BACKEND_URL}`;
+
+const ENDPOINT = (import.meta.env.VITE_BACKEND_URL || "http://localhost:9000").replace(/\/$/, "");
+
 const socket = io(ENDPOINT, {
 	reconnectionDelay: 1000,
 	reconnection: true,
@@ -8,6 +10,7 @@ const socket = io(ENDPOINT, {
 	agent: false,
 	upgrade: false,
 	rejectUnauthorized: false,
+	withCredentials: true,
 });
 
 export default socket;
